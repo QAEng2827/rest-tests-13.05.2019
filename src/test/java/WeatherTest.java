@@ -25,15 +25,6 @@ public class WeatherTest {
                 .log().all()
                 .statusCode(200);//  проверяет возвращаемій код, прошел ли запрос, если поставить 300 или 400, то тест упадет
 
-//        String cityId = responseCityIndex.extract().asString();
-//        System.out.println(cityId);
-//
-////  extract cityId from response body
-//        if (cityId.contains("|")) {
-//            cityId = cityId.substring(cityId.lastIndexOf("|") + 1);
-//            System.out.println(cityId);
-//            System.out.println();
-//        }
 
         // более компактный способ
         String responseStr = responseCityIndex.extract().asString();
@@ -62,9 +53,7 @@ public class WeatherTest {
                 .body("'{pcity}'", is(not(1)))//  JSON path wit hamprest matchers, можно проверить, изменился ключ или нет
                 .body("any {it.key=='{pcity}'}", is(true)); // Groovy path with  hamprest matchers?  проверяется присутствие ключа в JSON
             System.out.println(responseCityId.extract().path("'{pcity}'"));
-//        String weatherCityId = responseCityId.extract().asString();
-//        String result = StringEscapeUtils.unescapeJava(weatherCityId);
-//        System.out.println(result);
+
     }
 
 
