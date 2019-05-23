@@ -5,7 +5,7 @@ import org.junit.Test;
 
 public class PetStoreTest {
    static {
-    RestAssured.baseURI = "https://petstore.swagger.io/v2/";
+    RestAssured.baseURI = Config.BASE_URI;
    }
     private enum Status{
        AVALABLE,
@@ -22,7 +22,7 @@ public class PetStoreTest {
      RestAssured.given()
 
                // .log().uri()
-                .get("pet/{petId}", petId)
+                .get(Config.GET_PET_BY_ID, petId)
                 .then()
                 .log().all()
                 .statusCode(200);//  проверяет возвращаемій код, прошел ли запрос, если поставить 300 или 400, то тест упадет
@@ -34,7 +34,7 @@ public class PetStoreTest {
     RestAssured.given()
                 .log().uri()
             .param("status",Status.AVALABLE)
-                .get("pet/findByStatus")
+                .get(Config.GET_PET_BY_STATUSE)
                 .then()
                 .log().all()
                 .statusCode(200);//  пр
