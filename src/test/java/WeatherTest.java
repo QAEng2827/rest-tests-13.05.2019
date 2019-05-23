@@ -9,13 +9,16 @@ import static org.hamcrest.Matchers.not;
 public class WeatherTest {
     @Test
     public void getWeatherPerCityTest() {
+
+        String cityName="Ternopil";
         RestAssured.baseURI = "https://pinformer.sinoptik.ua";
-        RestAssured.basePath = "/search.php";
+        RestAssured.basePath = "/search.php";// можно вставить в . basePath или .get
+
         //составляем запрос, парметры берем из строки, котоая была в постмене. используем паттерн-билдер
         ValidatableResponse responseCityIndex = RestAssured.given()
                 .param("lang", "ua")
                 .param("return_id", "1")
-                .param("q", "lviv")
+                .param("q", cityName)
                 .log().uri()
                 .get()
                 .then()
@@ -57,8 +60,8 @@ public class WeatherTest {
                 .log().all()
                 .statusCode(200)//  проверяет возвращаемій код, прошел ли запрос, если поставить 300 или 400, то тест упадет
                 .body("'{pcity}'", is(not(1)))//  JSON path wit hamprest matchers, можно проверить, изменился ключ или нет
-                .body("any {it.key=='{pcity}'}", is(true)); // Groovy path with  hamprest matchers
-
+                .body("any {it.key=='{pcity}'}", is(true)); // Groovy path with  hamprest matchers?  проверяется присутствие ключа в JSON
+            System.out.println(responseCityId.extract().path("'{pcity}'"));
 //        String weatherCityId = responseCityId.extract().asString();
 //        String result = StringEscapeUtils.unescapeJava(weatherCityId);
 //        System.out.println(result);
