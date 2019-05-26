@@ -4,24 +4,25 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class PetStoreTest {
-   static {
-    RestAssured.baseURI = Config.BASE_URI;
-   }
-    private enum Status{
-       AVALABLE,
+    static {
+        RestAssured.baseURI = Config.BASE_URI;
+    }
+
+    private enum Status {
+        AVALABLE,
         PENDING,
         SOLD
     }
 
     @Test
-    public void getPetIdTest(){
+    public void getPetIdTest() {
 
-        int petId = 3;
+        int petId = 27;
 
         //составляем запрос, парметры берем из строки, котоая была в постмене. используем паттерн-билдер
-     RestAssured.given()
+        RestAssured.given()
 
-               // .log().uri()
+                .log().uri()
                 .get(Config.GET_PET_BY_ID, petId)
                 .then()
                 .log().all()
@@ -29,16 +30,30 @@ public class PetStoreTest {
     }
 
     @Test
-    public void getPetByStatus(){
+    public void getPetByStatus() {
+       for (Status status : Status.values()) {
 
-    RestAssured.given()
+            RestAssured.given()
+                    .log().uri()
+                    .param("status",status)
+                    .get(Config.GET_PET_BY_STATUSE)
+                    .then()
+                    .log().all()
+                    .statusCode(200);//  пр
+
+      }
+    }
+
+
+    @Test
+    public void deletePetId() {
+        int petId = 27;
+        RestAssured.given()
                 .log().uri()
-            .param("status",Status.AVALABLE)
-                .get(Config.GET_PET_BY_STATUSE)
+                .delete(Config.DELETE_PET_BY_ID, petId)
                 .then()
                 .log().all()
-                .statusCode(200);//  пр
-
+                .statusCode(200);
     }
 
 }
