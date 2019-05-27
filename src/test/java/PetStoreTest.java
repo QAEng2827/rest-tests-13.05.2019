@@ -30,23 +30,54 @@ public class PetStoreTest {
     }
 
     @Test
-    public void getPetByStatus() {
-       for (Status status : Status.values()) {
+    public void getPetByStatusTest() {
+        for (Status status : Status.values()) {
 
             RestAssured.given()
                     .log().uri()
-                    .param("status",status)
+                    .param("status", status)
                     .get(Config.GET_PET_BY_STATUSE)
                     .then()
                     .log().all()
                     .statusCode(200);//  пр
 
-      }
+        }
     }
 
+    @Test
+    public void createPetTest() {
+        String requestBody = "{\n" +
+                "  \"id\": 0,\n" +
+                "  \"category\": {\n" +
+                "    \"id\": 0,\n" +
+                "    \"name\": \"string\"\n" +
+                "  },\n" +
+                "  \"name\": \"doggie\",\n" +
+                "  \"photoUrls\": [\n" +
+                "    \"string\"\n" +
+                "  ],\n" +
+                "  \"tags\": [\n" +
+                "    {\n" +
+                "      \"id\": 0,\n" +
+                "      \"name\": \"string\"\n" +
+                "    }\n" +
+                "  ],\n" +
+                "  \"status\": \"available\"\n" +
+                "}";
+
+        RestAssured.given()
+                .log().uri()
+                // .header("Content-Type", "application/json")
+                .contentType("application/json")//  равнозначна предыдущей
+                .body(requestBody)
+                .post(Config.CREATE_PET)
+                .then()
+                .log().all()
+                .statusCode(200);
+    }
 
     @Test
-    public void deletePetId() {
+    public void deletePetIdTest() {
         int petId = 27;
         RestAssured.given()
                 .log().uri()
