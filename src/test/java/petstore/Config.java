@@ -1,3 +1,5 @@
+package petstore;
+
 public class Config {
     final static String BASE_URI ="https://petstore.swagger.io/v2/";
     final static String CREATE_PET = "pet";
