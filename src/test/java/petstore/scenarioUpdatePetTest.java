@@ -10,9 +10,6 @@ import petstore.models.TagModel;
 import static org.hamcrest.Matchers.equalTo;
 
 public class scenarioUpdatePetTest extends BasePetStoreTest{
-    int newPetId=12827;
-    String newPetName="Umertvie";
-    String newStatus="SOLD";//;
 
     @Test
     public void  updatePetScenarioTest(){
@@ -22,7 +19,8 @@ public class scenarioUpdatePetTest extends BasePetStoreTest{
                 newPetName,
                 new String[]{"www.zoo2019.com"},
                 new TagModel[]{new TagModel()},
-               "SOLD"// "PENDING"
+               "SOLD"
+                // "PENDING"
         );
 
         RestAssured.given()

@@ -12,13 +12,17 @@ public class BasePetStoreTest {
         RestAssured.baseURI = Config.BASE_URI;
     }
 
+    public int petId=2728;
+    public String petName="Upir";
+
+    public int newPetId = 12827;
+    public String newPetName="Umertvie";
+    public   String newStatus="SOLD";
+
     @Before
     public void before(){
 
-        int petId=2728;
-        String petName="Upir";
-
-        PetModel petModel = new PetModel(
+           PetModel petModel = new PetModel(
                 petId,
                 new CategoryModel(),
                 petName,
@@ -51,9 +55,7 @@ public class BasePetStoreTest {
 
     @After
     public void after(){
-       int newPetId=12827;
 
-            // newPetId = petId ;
             RestAssured.given()
                     .log().uri()
                     .delete(Config.DELETE_PET_BY_ID, newPetId)
