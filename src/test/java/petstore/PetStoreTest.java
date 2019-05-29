@@ -1,12 +1,11 @@
 package petstore;
 
 import io.restassured.RestAssured;
+import io.restassured.response.ValidatableResponse;
 import org.junit.Test;
 import petstore.models.CategoryModel;
 import petstore.models.PetModel;
 import petstore.models.TagModel;
-
-import java.util.ArrayList;
 
 public class PetStoreTest {
     static {
@@ -18,20 +17,28 @@ public class PetStoreTest {
         PENDING,
         SOLD
     }
+    int petId = 2728;
+    int newPetId=12827;
+    String petName="Umertvie";
+    String newPetName = "Upir";
+    String responseStatusUpPet;
 
     @Test
     public void getPetIdTest() {
 
-        int petId = 27;
+      //  int petId = 27;
 
         //составляем запрос, парметры берем из строки, котоая была в постмене. используем паттерн-билдер
-        RestAssured.given()
+        ValidatableResponse responseStatus = RestAssured.given()
 
                 .log().uri()
-                .get(Config.GET_PET_BY_ID, petId)
+                .get(Config.GET_PET_BY_ID, newPetId)
                 .then()
                 .log().all()
                 .statusCode(200);//  проверяет возвращаемій код, прошел ли запрос, если поставить 300 или 400, то тест упадет
+
+        responseStatusUpPet = responseStatus.extract().asString();
+        System.out.println(responseStatusUpPet);
     }
 
     @Test
@@ -42,8 +49,10 @@ public class PetStoreTest {
                     .param("status", status)
                     .get(Config.GET_PET_BY_STATUSE)
                     .then()
-                    .log().all()
+//                    .log().all()
                     .statusCode(200);
+
+
         }
     }
 
@@ -51,9 +60,9 @@ public class PetStoreTest {
     public void createPetTest() {
         //int id, CategoryModel categoy, String name, String[] photoUrls, TagModel[] tags, String status
         PetModel petModel = new PetModel(
-                27,
+                petId,
                 new CategoryModel(),
-                "Umertvie",
+                petName,
                 new String[]{"www.zoo.com"},
                 new TagModel[]{new TagModel()},
                 "AVALABLE"
@@ -70,30 +79,12 @@ public class PetStoreTest {
     }
 
     @Test
-    public void uddatePetTest(){
-        /*
-        * {
-  "id": 0,
-  "category": {
-    "id": 0,
-    "name": "string"
-  },
-  "name": "doggie",
-  "photoUrls": [
-    "string"
-  ],
-  "tags": [
-    {
-      "id": 0,
-      "name": "string"
-    }
-  ],
-  "status": "available"
-}*/
+    public void updatePetTest(){
+
         PetModel petModel = new PetModel(
-                27,
+                newPetId,
                 new CategoryModel(),
-                "Umertvie27",
+                newPetName,
                 new String[]{"www.zoo2019.com"},
                 new TagModel[]{new TagModel()},
                 "SOLD"
@@ -108,17 +99,27 @@ public class PetStoreTest {
                 .log().all()
                 .statusCode(200);
 
+
+
     }
 
     @Test
     public void deletePetIdTest() {
-        int petId = 27;
+      // newPetId = petId ;
         RestAssured.given()
                 .log().uri()
-                .delete(Config.DELETE_PET_BY_ID, petId)
+                .delete(Config.DELETE_PET_BY_ID, newPetId)
                 .then()
                 .log().all()
                 .statusCode(200);
     }
 
+    @Test
+    public void scenarioUpdatePet(){
+        createPetTest();
+        updatePetTest();
+        getPetIdTest();
+        deletePetIdTest();
+
+    }
 }
