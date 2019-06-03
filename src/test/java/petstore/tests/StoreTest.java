@@ -3,15 +3,16 @@ package petstore.tests;
 import org.junit.Test;
 import petstore.endpoints.StoreEndpoint;
 import petstore.models.StoreOrderModel;
-import petstore.models.TagModel;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class StoreTest {
     private StoreEndpoint storeEndpoint = new StoreEndpoint();
     Date shipDate = new Date();
+    private StoreOrderModel storeOrderModel;
 
-    private int Id = 9;
+    private int id = 9;
     private int petId =28;
     private int quantity = 1;
   //  private Date shipDate;
@@ -31,10 +32,11 @@ public class StoreTest {
 
 
         StoreOrderModel storeOrderModel = new StoreOrderModel(
-                Id,
+                id,
                 petId,
                 quantity ,
                 shipDate.getTime(),
+               // new SimpleDateFormat("yyyy-MM-dd").format(new Date()),
                 "AVALABLE",
                 false
         );
@@ -50,7 +52,7 @@ public class StoreTest {
 @Test
     public void getSrireOrderByIDTest(){
         storeEndpoint
-                .getStoreOrderById(Id)
+                .getStoreOrderById(id)
                 .statusCode(200);
 
 }
@@ -58,7 +60,7 @@ public class StoreTest {
     @Test
     public void deleteStoreOrderTest(){
         storeEndpoint
-                .deleteStoreOrder(Id)
+                .deleteStoreOrder(id)
                 .statusCode(200);
     }
 
