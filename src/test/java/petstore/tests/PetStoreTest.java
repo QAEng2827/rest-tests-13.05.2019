@@ -14,7 +14,7 @@ import static petstore.endpoints.PetEndpoint.*;
 @RunWith(SerenityRunner.class)
 public class PetStoreTest {
     @Steps
-    private PetEndpoint petEndpoint = new PetEndpoint();
+    private PetEndpoint petEndpoint ;
 
 
     int petId = 2728;
@@ -26,7 +26,7 @@ public class PetStoreTest {
     @Test
     public void getPetIdTest() {
 
-        int petId = 2;
+       // int petId = 2;
         petEndpoint
                 .getPetById(petId)
                 .statusCode(200);

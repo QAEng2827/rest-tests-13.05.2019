@@ -3,21 +3,28 @@ package weather;
 import groovy.json.StringEscapeUtils;
 import io.restassured.RestAssured;
 import io.restassured.response.ValidatableResponse;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.serenitybdd.rest.SerenityRest;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.not;
 
+@RunWith(SerenityRunner.class)
 public class WeatherTest {
-    @Test
+ //   @Steps
+   @Test
     public void getWeatherPerCityTest() {
+        SerenityRest.enableLoggingOfRequestAndResponseIfValidationFails();
 
         String cityName="Ternopil";
         RestAssured.baseURI = "https://pinformer.sinoptik.ua";
-        RestAssured.basePath = "/search.php";// можно вставить в . basePath или .get
-
+        //RestAssured.basePath = "/search.php";// можно вставить в . basePath или .get
+SerenityRest.setDefaultBasePath("/search.php");
         //составляем запрос, парметры берем из строки, котоая была в постмене. используем паттерн-билдер
-        ValidatableResponse responseCityIndex = RestAssured.given()
+        ValidatableResponse responseCityIndex = SerenityRest.given()
                 .param("lang", "ua")
                 .param("return_id", "1")
                 .param("q", cityName)
@@ -42,7 +49,7 @@ public class WeatherTest {
         // RestAssured.basePath = "/pinformer4.php";
         // RestAssured.baseURI = "https://pinformer.sinoptik.ua";
         //составляем запрос, парметры берем из строки, котоая была в постмене
-        ValidatableResponse responseCityId = RestAssured.given()
+        ValidatableResponse responseCityId = SerenityRest.given()
                 .basePath("/pinformer4.php")
                 .param("type", "js")
                 .param("lang", "en")
