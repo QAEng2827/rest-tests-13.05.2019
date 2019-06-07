@@ -11,9 +11,10 @@ How to switch rest-assured project to Serenity'
 4. For JavaObj To JSON serialisation add dependency 
           https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind 
 5.  Add @Step annotation marks above methods  in test units
-6.   You should add Serenity annotation @RunWith(SerenityRunner.class) above test class. 
+6.  Add Serenity annotation @RunWith(SerenityRunner.class) above test class. 
      It let you run the JUnit test using the Serenity test runner.
 7. Add @Steps annotation marks a Serenity step library, above the instanse test page class.
 8. Change dependency java-unit  to  serenity-junit 
 (https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit)
-9.
+9. Add plagin serenity-maven-plugin (net.serenity-bdd.maven.plugins serenity-maven-plugin 2.0.50 )
+10. 
