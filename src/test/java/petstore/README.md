@@ -17,4 +17,46 @@ How to switch rest-assured project to Serenity'
 8. Change dependency java-unit  to  serenity-junit 
 (https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit)
 9. Add plagin serenity-maven-plugin (net.serenity-bdd.maven.plugins serenity-maven-plugin 2.0.50 )
-10.  Add @RunWith(SerenityParametrizedRunner.class)
+10.  Add @RunWith(SerenityParametrizedRunner.class) for using  data-driven Serenity test.
+(http://thucydides.info/docs/serenity-staging/#_data_driven_tests)
+11. Add @TestData annotation and input test Data.
+     @TestData
+      public static Collection<Object[]> testData() {
+          return Arrays.asList(new Object[][]{
+                  // { name, statusCode},
+                    {"Urba", 200},
+                {" ", 400},
+                  {15, 200},
+     
+  
+          });
+      }
+12.  Then you need to inject The test data into member variables     
+    private  String petName;
+       private  int codeStatus;  
+        
+13. Create a constructor with the parameters in the correct order for this to work.
+ public PetVerifyCreationTest(String namePet, int codeStatus){
+      this.namePet = namePet;
+       this.codeStatus = codeStatus;
+    }
+    
+    or 
+    
+     public void setPetName(String petName) {
+      this.petName = petName;
+        }
+    
+        public void setCodeStatus(int codeStatus) {
+            this.codeStatus = codeStatus;
+        }
+       
+14. Use these member variables to perform your test/
+
+15. For using test data from CSV files:
+    a) create CSV file, by default with columns separated by commas;
+    b)add annotation @UseTestDataFrom(value="path/nameOfFile.csv") 
+      to indicate where to find the CSV file;
+    c)  create a test class containing properties that match the columns in the test data;
+    d) The test class will typically contain one or more tests that use these properties 
+       as parameters to the test step or Page Object methods.

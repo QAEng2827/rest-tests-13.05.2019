@@ -23,7 +23,7 @@ import java.util.Collection;
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom(value="C:\\Users\\nakopyuk_i\\IdeaProjects\\rest-tests-13.05.2019\\src\\test\\java\\petstore\\tests\\petNameCodeStatus.csv")
 public class PetVerifyCreationTest {
- //   @TestData
+//    @TestData
 //    public static Collection<Object[]> testData() {
 //        return Arrays.asList(new Object[][]{
 //                // { name, statusCode},
