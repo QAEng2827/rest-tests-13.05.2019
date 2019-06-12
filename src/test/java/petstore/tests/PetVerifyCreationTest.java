@@ -83,13 +83,13 @@ public class PetVerifyCreationTest {
 //
 //    }
 //
-//    @After
-//    public void postCondition() {
-//        petEndpoint
-//                .deletePet(petModel.getId())
-//                .statusCode(codeStatus);
-//
-//    }
+    @After
+    public void postCondition() {
+        petEndpoint
+                .deletePet(petModel.getId())
+                .statusCode(codeStatus);
+
+    }
 
     @Test
     public void veryfyCreationPetTest(){
