@@ -17,4 +17,4 @@ How to switch rest-assured project to Serenity'
 8. Change dependency java-unit  to  serenity-junit 
 (https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit)
 9. Add plagin serenity-maven-plugin (net.serenity-bdd.maven.plugins serenity-maven-plugin 2.0.50 )
-10. 
+10.  Add @RunWith(SerenityParametrizedRunner.class)
