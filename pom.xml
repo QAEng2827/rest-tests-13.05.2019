@@ -16,6 +16,7 @@
         <maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
         <source.encoding>UTF-8</source.encoding>
         <java.version>11</java.version>
+        <test.name>*</test.name>
     </properties>
 
    <dependencies>
@@ -79,6 +80,11 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${surefire.version}</version>
                 <configuration>
+                    <includes>
+                        <!--   позволяет запустить конкретный тестовый класс из папки tests, не зависимо от того, есть ли в названии
+                        слово test-->
+                        <include>**/tests/**/${test.name}.java</include>
+                    </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <skip>false</skip>
                 </configuration>

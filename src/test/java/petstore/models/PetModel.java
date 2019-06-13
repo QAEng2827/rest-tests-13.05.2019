@@ -75,6 +75,14 @@ public class PetModel {
         return status;
     }
 
+    public PetModel(CategoryModel categoy, String name, String[] photoUrls, TagModel[] tags, String status) {
+        this.categoy = categoy;
+        this.name = name;
+        this.photoUrls = photoUrls;
+        this.tags = tags;
+        this.status = status;
+    }
+
     public PetModel(int id, CategoryModel categoy, String name, String[] photoUrls, TagModel[] tags, String status) {
         this.id = id;
         this.categoy = categoy;

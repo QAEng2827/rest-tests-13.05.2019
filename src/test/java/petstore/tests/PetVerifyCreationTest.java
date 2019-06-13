@@ -1,24 +1,15 @@
 package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
-import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
-import net.thucydides.junit.annotations.Concurrent;
-import net.thucydides.junit.annotations.TestData;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import petstore.endpoints.PetEndpoint;
 import petstore.models.CategoryModel;
 import petstore.models.PetModel;
 import petstore.models.TagModel;
-
-import java.lang.reflect.Array;
-import java.util.Arrays;
-import java.util.Collection;
 
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom(value="C:\\Users\\nakopyuk_i\\IdeaProjects\\rest-tests-13.05.2019\\src\\test\\java\\petstore\\tests\\petNameCodeStatus.csv")

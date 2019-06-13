@@ -17,6 +17,8 @@ How to switch rest-assured project to Serenity'
 8. Change dependency java-unit  to  serenity-junit 
 (https://mvnrepository.com/artifact/net.serenity-bdd/serenity-junit)
 9. Add plagin serenity-maven-plugin (net.serenity-bdd.maven.plugins serenity-maven-plugin 2.0.50 )
+mvn serenity:aggregate
+
 10.  Add @RunWith(SerenityParametrizedRunner.class) for using  data-driven Serenity test.
 (http://thucydides.info/docs/serenity-staging/#_data_driven_tests)
 11. Add @TestData annotation and input test Data.
@@ -60,3 +62,22 @@ How to switch rest-assured project to Serenity'
     c)  create a test class containing properties that match the columns in the test data;
     d) The test class will typically contain one or more tests that use these properties 
        as parameters to the test step or Page Object methods.
+        public void setPetName(String petName) {
+             this.petName = petName;
+               }
+           
+               public void setCodeStatus(int codeStatus) {
+                   this.codeStatus = codeStatus;
+               }
+               
+16. Чтоб запустить конкретный класс надо:
+  а)добавить в пом-файл.
+ <test.name>*</test.name> 
+  и в <build> maven-surefire-plugin вставить
+   
+   <includes>
+                            <include>**/tests/**/${test.name}.java</include>
+                        </includes>
+   в) в консоли ввести:
+   mvn clean verify -Dtest.name=PetCreateCombinationsTest
+    где после равно название тестового класса
