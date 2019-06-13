@@ -21,7 +21,7 @@ public class PetCreateCombinationsTest {
     @Steps
     private PetEndpoint petEndpoint;
 
-    // private PetModel petModel;
+
 
     @TestData
     public static Collection<Object[]> testData() {
