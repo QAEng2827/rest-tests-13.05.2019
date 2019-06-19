@@ -22,7 +22,6 @@ public class PetCreateCombinationsTest {
     private PetEndpoint petEndpoint;
 
 
-
     @TestData
     public static Collection<Object[]> testData() {
         return Arrays.asList(new Object[][]{

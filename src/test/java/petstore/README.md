@@ -81,3 +81,4 @@ mvn serenity:aggregate
    в) в консоли ввести:
    mvn clean verify -Dtest.name=PetCreateCombinationsTest
     где после равно название тестового класса
+17. Для параллельного запуска тестов, добавить аннотацию @Concurrent    

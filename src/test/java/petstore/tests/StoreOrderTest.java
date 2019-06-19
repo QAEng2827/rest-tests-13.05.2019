@@ -1,7 +1,9 @@
 package petstore.tests;
 
+import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,10 +16,11 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.equalTo;
 
+//@Concurrent
 @RunWith(SerenityRunner.class)
 public class StoreOrderTest {
     @Steps
-    private StoreEndpoint storeEndpoint = new StoreEndpoint();
+    private StoreEndpoint storeEndpoint;
     private Date shipDate = new Date();
     private StoreOrderModel storeOrderModel;
 
@@ -34,9 +37,7 @@ public class StoreOrderTest {
                 false
 
         );
-        storeEndpoint
-                .createStoreOrder(storeOrderModel)
-                .statusCode(200);
+
 
     }
 
@@ -48,11 +49,44 @@ public class StoreOrderTest {
     }
 
     @Test
-    public void storeOrderTest() {
+    public void storeOrderTest() throws InterruptedException {
+
+            Thread.sleep(5000);
+
+//        storeOrderModel = new StoreOrderModel(
+//                19,
+//                289,
+//                1,
+//                shipDate.getTime(),
+//                "AVALABLE",
+//                false
+//
+//        );
 
         storeEndpoint
                 .createStoreOrder(storeOrderModel)
                 .statusCode(200);
+    }
+
+    @Test
+    public void getStoreOrderByIdTest() throws InterruptedException {
+
+            Thread.sleep(5000);
+
+
+//        storeOrderModel = new StoreOrderModel(
+//                19,
+//                29,
+//                1,
+//                shipDate.getTime(),
+//                "AVALABLE",
+//                false
+//
+//        );
+//        storeEndpoint
+//
+//                .createStoreOrder(storeOrderModel)
+//                .statusCode(200);
 
         storeEndpoint
                 .getStoreOrderById(storeOrderModel.getId())

@@ -2,6 +2,7 @@ package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import petstore.endpoints.PetEndpoint;
@@ -11,30 +12,25 @@ import petstore.models.TagModel;
 
 import static petstore.endpoints.PetEndpoint.*;
 
+@Concurrent(threads = "2")
 @RunWith(SerenityRunner.class)
 public class PetStoreTest {
     @Steps
-    private PetEndpoint petEndpoint ;
-
-
-    int petId = 2728;
-    int newPetId = 12827;
-    String petName = "Umertvie";
-    String newPetName = "Upir";
-    String responseStatusUpPet;
+    private PetEndpoint petEndpoint;
+    private PetModel petModel;
 
     @Test
-    public void getPetIdTest() {
-
-       // int petId = 2;
+    public void getPetByIdTest() throws InterruptedException {
+        Thread.sleep(3000);
+        int petId = 2;
         petEndpoint
                 .getPetById(petId)
                 .statusCode(200);
     }
 
     @Test
-    public void getPetByStatusTest() {
-
+    public void getPetByStatusTest() throws InterruptedException {
+        Thread.sleep(3000);
         for (Status status : Status.values()) {
             petEndpoint
                     .getPetByStatus(status)
@@ -43,29 +39,31 @@ public class PetStoreTest {
     }
 
     @Test
-    public void createPetTest() {
+    public void createPetTest() throws InterruptedException {
+        Thread.sleep(3000);
         PetModel petModel = new PetModel(
-                petId,
+                13,
                 new CategoryModel(),
-                petName,
+                "Zombie",
                 new String[]{"www.zoo.com"},
                 new TagModel[]{new TagModel()},
-                "AVALABLE"
-        );
+                "AVAILABLE");
+
         petEndpoint
                 .createPet(petModel)
                 .statusCode(200);
-
-    }
-
-
-
-    @Test
-    public void deletePetIdTest() {
         petEndpoint
-                .deletePet(petId)
-                .statusCode(200);
+                .deletePet(petModel.getId())
+               .statusCode(200);
     }
+//    @Test
+//    public void deletePetIdTest() throws InterruptedException {
+//
+//        Thread.sleep(5000);
+//        petEndpoint
+//                .deletePet(petModel.getId())
+//                .statusCode(200);
+//    }
 
 
 }

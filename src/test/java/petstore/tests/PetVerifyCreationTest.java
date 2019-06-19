@@ -2,6 +2,7 @@ package petstore.tests;
 
 import net.serenitybdd.junit.runners.SerenityParameterizedRunner;
 import net.thucydides.core.annotations.Steps;
+import net.thucydides.junit.annotations.Concurrent;
 import net.thucydides.junit.annotations.UseTestDataFrom;
 import org.junit.After;
 import org.junit.Test;
@@ -11,6 +12,7 @@ import petstore.models.CategoryModel;
 import petstore.models.PetModel;
 import petstore.models.TagModel;
 
+@Concurrent
 @RunWith(SerenityParameterizedRunner.class)
 @UseTestDataFrom(value="C:\\Users\\nakopyuk_i\\IdeaProjects\\rest-tests-13.05.2019\\src\\test\\java\\petstore\\tests\\petNameCodeStatus.csv")
 public class PetVerifyCreationTest {
@@ -85,7 +87,7 @@ public class PetVerifyCreationTest {
     @Test
     public void veryfyCreationPetTest(){
         petModel = new PetModel(
-                2728,
+             //   2728,
                 new CategoryModel(),
                 petName,
                 new String[]{"www.zoo2019.com"},

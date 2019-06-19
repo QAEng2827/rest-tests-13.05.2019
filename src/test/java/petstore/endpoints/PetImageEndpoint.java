@@ -41,7 +41,8 @@ public class PetImageEndpoint {
 @Step
     public ValidatableResponse uploadImagePet(int petId, String fileName) {
 
-        File file = new File("./" + fileName);
+        File file = new File("C:\\Users\\nakopyuk_i\\IdeaProjects\\rest-tests-13.05.2019\\src\\test\\java\\" +
+                "petstore\\petImages/" + fileName);
         String checkMessage = "additionalMetadata: null" + "\n" +
                 "File uploaded to ./" + fileName + ", " + file.length() + " bytes";
 
