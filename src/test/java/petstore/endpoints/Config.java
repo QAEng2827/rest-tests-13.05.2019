@@ -7,6 +7,7 @@ public class Config {
     final static String GET_PET_BY_ID ="pet/{petId}";
     final static String GET_PET_BY_STATUSE ="pet/findByStatus";
     final static String DELETE_PET_BY_ID ="pet/{petId}";
+    final static String UPLOAD_IMAGE_PET ="pet/{petId}/uploadImage";
 
     final static String GET_STORE_INVENTORY ="store/inventory";
     final static String CREATE_ORDER = "store/order";
