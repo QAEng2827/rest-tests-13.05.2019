@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import petstore.endpoints.Config;
 import petstore.models.PetModel;
 
+import java.io.File;
 
 
 public class PetEndpoint {
@@ -74,6 +75,15 @@ Logger log = LoggerFactory.getLogger(this.getClass().getName());
                 .then();
                // .log().all();
 
+
+    }
+    @Step
+    public ValidatableResponse uploadPetImage(int petId, File file){
+        return  given()
+                .contentType("multipart/form-data")
+                .multiPart(file)
+                .post(Config.UPLOAD_IMAGE_PET, petId)
+                .then();// , нужен, чтоб потом получить responce
 
     }
 

@@ -21,23 +21,6 @@ public class PetImageEndpoint {
 
                 // .log().uri()                ;
     }
-
-//    @Step
-//    public ValidatableResponse uploadImagePet(int petId, String fileImageName, String metadata) {
-//        File file = new File("./"+fileImageName);
-//
-//        String message = "additionalMetadata: " + metadata + "\n" +
-//                "File uploaded to ./" + fileImageName + ", " + file.length() + " bytes";
-//
-//    //    log.info("Execoting: getPetById");
-//        return given()
-//                .multiPart(file)
-//                .multiPart("additionalMetadata", metadata)
-//                .get(Config.UPLOAD_IMAGE_PET, petId)
-//                .then()
-//                .log().all()
-//                .body("message", is(message));
-//    }
 @Step
     public ValidatableResponse uploadImagePet(int petId, String fileName) {
 
