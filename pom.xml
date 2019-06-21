@@ -17,6 +17,7 @@
         <source.encoding>UTF-8</source.encoding>
         <java.version>11</java.version>
         <test.name>*</test.name>
+        <env>qa</env> <!--добиваили параметр, какую среду вібрать-->
     </properties>
 
    <dependencies>
@@ -87,6 +88,14 @@
                     </includes>
                     <testFailureIgnore>true</testFailureIgnore>
                     <skip>false</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>7</source>
+                    <target>7</target>
                 </configuration>
             </plugin>
         </plugins>
